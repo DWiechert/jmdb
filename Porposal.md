@@ -12,7 +12,7 @@ Tables can be setup in 2 fashions: Row or Column-based. There are pros and cons 
 * When a match is found on a query, getting the rest of the row is trivial
 * Data compression will be difficult
 
-### Column (***this is my personal vote***):
+### Column (*this is my personal vote*):
 * Data is stored on each column
 * Searching a specific column is trivial
 * When a match is found on a query, getting the rest of the row is a performance hit
