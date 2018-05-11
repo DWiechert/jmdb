@@ -1,0 +1,82 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.jmdb</groupId>
+    <artifactId>jmdb</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Java In-Memory Database</name>
+    <description>In-memory database written in Java.</description>
+    <url>http://jmdb.io</url>
+
+    <!-- Plug-ins and SCM found online - https://github.com/kevinsawicki/github-maven-example/blob/master/example/pom.xml -->
+    <issueManagement>
+        <url>https://github.com/dwiechert/jmdb/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+
+    <licenses>
+        <license>
+            <name>Apache v2.0 License</name>
+            <url>http://www.apache.org/licenses/</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/dwiechert/jmdb</url>
+        <connection>scm:git:git://github.com/dwiechert/jmdb.git</connection>
+        <developerConnection>scm:git:git@github.com:dwiechert/jmdb.git</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <email>dan.wiechert@gmail.com</email>
+            <name>Dan Wiechert</name>
+            <url>https://github.com/dwiechert</url>
+            <id>dwiechert</id>
+        </developer>
+    </developers>
+
+    <modules>
+        <module>jmdb-core</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.10</java.version>
+    </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.7.0</version>
+                    <configuration>
+                        <release>10</release>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.ow2.asm</groupId>
+                            <artifactId>asm</artifactId>
+                            <version>6.1.1</version> <!-- Use newer version of ASM -->
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file://${project.build.directory}</url>
+        </repository>
+    </distributionManagement>
+</project>
