@@ -31,7 +31,7 @@ jmdb will support just a few data types as a proof-of-concept.
 ### Long:
 * Values of java.lang.Long are supported
 ### FixedLengthString
-* Stored internally as `UTF-16`
+* Stored internally as `UTF-8`
 * Created with the fields length defined
 * A max length is enforced by the engine (maybe 1000 characters to start)
 
