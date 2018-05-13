@@ -1,14 +1,26 @@
 package io.jmdb.core.models.column;
 
+import java.util.List;
+
 /**
  * @author Dan Wiechert
  */
-public interface Column<DataType> {
+public interface Column {
+	enum ColumnType {
+		BOOLEAN,
+		BIGINT,
+		STRING;
+	}
+
+	ColumnType getType();
+
 	String name();
 
-	boolean add(DataType dataType);
+	boolean add(byte[] data);
+
+	List<Integer> indexOf(byte[] data);
 
 	boolean delete(int index);
 
-	int deleteAll(DataType dataType);
+	int deleteAll(byte[] data);
 }

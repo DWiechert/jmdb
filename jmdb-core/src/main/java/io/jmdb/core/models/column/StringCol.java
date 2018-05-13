@@ -1,33 +1,32 @@
 package io.jmdb.core.models.column;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author Dan Wiechert
  */
-public class BooleanCol extends BaseColumn {
-	private final List<Byte> values = new CopyOnWriteArrayList<>();
+public class StringCol extends BaseColumn {
+	private final List<byte[]> values = new CopyOnWriteArrayList<>();
 
-	public BooleanCol(final String name) {
-		super(name, ColumnType.BOOLEAN);
+	public StringCol(final String name) {
+		super(name, ColumnType.STRING);
 	}
 
 	@Override
 	public boolean add(final byte[] data) {
-		final byte value = validate(data);
-		values.add(value);
+		values.add(data);
 		return true;
 	}
 
 	@Override
 	public List<Integer> indexOf(final byte[] data) {
 		final List<Integer> indexes = new ArrayList<>();
-		final byte value = validate(data);
 		int index = 0;
-		for (final Byte currentValue : values) {
-			if (currentValue.equals(value)) {
+		for (final byte[] currentValue : values) {
+			if (Arrays.equals(currentValue, data)) {
 				indexes.add(index);
 			}
 			index++;
@@ -50,12 +49,5 @@ public class BooleanCol extends BaseColumn {
 			}
 		}
 		return indexes.size();
-	}
-
-	private byte validate(final byte[] data) {
-		if (data.length != 1) {
-			throw new IllegalArgumentException("Boolean data must be 1 byte in length.");
-		}
-		return data[0];
 	}
 }
