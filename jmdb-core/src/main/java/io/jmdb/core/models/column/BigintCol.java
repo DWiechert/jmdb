@@ -16,6 +16,11 @@ public class BigintCol extends BaseColumn {
 	}
 
 	@Override
+	public byte[] get(final int index) {
+		return values.get(index);
+	}
+
+	@Override
 	public boolean add(final byte[] data) {
 		values.add(data);
 		return true;

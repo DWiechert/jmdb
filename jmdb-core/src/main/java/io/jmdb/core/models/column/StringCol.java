@@ -9,10 +9,17 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * @author Dan Wiechert
  */
 public class StringCol extends BaseColumn {
+	// FIXME: Have a Map<String, Integer> for compression
+	// FIXME: values should be List<Integer> which maps to compression map
 	private final List<byte[]> values = new CopyOnWriteArrayList<>();
 
 	public StringCol(final String name) {
 		super(name, ColumnType.STRING);
+	}
+
+	@Override
+	public byte[] get(final int index) {
+		return values.get(index);
 	}
 
 	@Override

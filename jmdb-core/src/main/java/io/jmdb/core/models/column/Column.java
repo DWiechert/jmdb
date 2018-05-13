@@ -16,6 +16,8 @@ public interface Column {
 
 	String name();
 
+	byte[] get(int index);
+
 	boolean add(byte[] data);
 
 	List<Integer> indexOf(byte[] data);
