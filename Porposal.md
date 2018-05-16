@@ -56,7 +56,7 @@ delete table <table name>
 ### Insert Row:
 * Ability to insert a row into the specified table
 ```
-insert into <table name> value (
+insert into <table name> values (
 	<column 1 value>,
 	<column 2 value>,
 	<column 3 value>
