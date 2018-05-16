@@ -1,5 +1,7 @@
 package io.jmdb.core.models.column;
 
+import io.jmdb.core.models.data.StringDataType;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +16,7 @@ public class StringCol extends BaseColumn {
 	private final List<byte[]> values = new CopyOnWriteArrayList<>();
 
 	public StringCol(final String name) {
-		super(name, ColumnType.STRING);
+		super(name, new StringDataType());
 	}
 
 	@Override
@@ -56,5 +58,23 @@ public class StringCol extends BaseColumn {
 			}
 		}
 		return indexes.size();
+	}
+
+	@Override
+	public boolean equals(final Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		if (!super.equals(o)) return false;
+
+		final StringCol stringCol = (StringCol) o;
+
+		return values != null ? values.equals(stringCol.values) : stringCol.values == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = super.hashCode();
+		result = 31 * result + (values != null ? values.hashCode() : 0);
+		return result;
 	}
 }

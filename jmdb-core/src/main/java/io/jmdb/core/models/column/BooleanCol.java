@@ -1,5 +1,7 @@
 package io.jmdb.core.models.column;
 
+import io.jmdb.core.models.data.BooleanDataType;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +19,7 @@ public class BooleanCol extends BaseColumn {
 	}
 
 	public BooleanCol(final String name) {
-		super(name, ColumnType.BOOLEAN);
+		super(name, new BooleanDataType());
 	}
 
 	@Override
@@ -64,5 +66,23 @@ public class BooleanCol extends BaseColumn {
 			throw new IllegalArgumentException("Boolean data must be 1 byte in length.");
 		}
 		return data;
+	}
+
+	@Override
+	public boolean equals(final Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		if (!super.equals(o)) return false;
+
+		final BooleanCol that = (BooleanCol) o;
+
+		return values != null ? values.equals(that.values) : that.values == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = super.hashCode();
+		result = 31 * result + (values != null ? values.hashCode() : 0);
+		return result;
 	}
 }

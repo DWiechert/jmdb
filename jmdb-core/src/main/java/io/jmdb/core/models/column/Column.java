@@ -1,18 +1,14 @@
 package io.jmdb.core.models.column;
 
+import io.jmdb.core.models.data.DataType;
+
 import java.util.List;
 
 /**
  * @author Dan Wiechert
  */
-public interface Column {
-	enum ColumnType {
-		BOOLEAN,
-		BIGINT,
-		STRING;
-	}
-
-	ColumnType getType();
+public interface Column<T> {
+	DataType<T> getDataType();
 
 	String name();
 

@@ -1,5 +1,7 @@
 package io.jmdb.core.models.column;
 
+import io.jmdb.core.models.data.LongDataType;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,11 +10,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 /**
  * @author Dan Wiechert
  */
-public class BigintCol extends BaseColumn {
+public class LongCol extends BaseColumn {
 	private final List<byte[]> values = new CopyOnWriteArrayList<>();
 
-	public BigintCol(final String name) {
-		super(name, ColumnType.BIGINT);
+	public LongCol(final String name) {
+		super(name, new LongDataType());
 	}
 
 	@Override
@@ -54,5 +56,23 @@ public class BigintCol extends BaseColumn {
 			}
 		}
 		return indexes.size();
+	}
+
+	@Override
+	public boolean equals(final Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		if (!super.equals(o)) return false;
+
+		final LongCol longCol = (LongCol) o;
+
+		return values != null ? values.equals(longCol.values) : longCol.values == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = super.hashCode();
+		result = 31 * result + (values != null ? values.hashCode() : 0);
+		return result;
 	}
 }
