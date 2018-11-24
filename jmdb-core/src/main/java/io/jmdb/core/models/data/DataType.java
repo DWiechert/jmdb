@@ -9,4 +9,6 @@ public interface DataType<T> {
 	T fromBytes(byte[] bytes);
 
 	byte[] toBytes(T value);
+
+	int length();
 }

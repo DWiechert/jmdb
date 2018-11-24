@@ -21,4 +21,9 @@ public class BooleanDataType implements DataType<Boolean> {
 	public byte[] toBytes(final Boolean value) {
 		return value ? TRUE : FALSE;
 	}
+
+	@Override
+	public int length() {
+		return 1;
+	}
 }

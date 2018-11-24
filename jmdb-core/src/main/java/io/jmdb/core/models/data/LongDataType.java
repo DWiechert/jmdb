@@ -20,4 +20,9 @@ public class LongDataType implements DataType<Long> {
 	public byte[] toBytes(final Long value) {
 		return Longs.toByteArray(value);
 	}
+
+	@Override
+	public int length() {
+		return 8;
+	}
 }

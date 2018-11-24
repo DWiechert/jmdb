@@ -53,6 +53,7 @@ public class BooleanCol extends BaseColumn {
 	public int deleteAll(final byte[] data) {
 		final List<Integer> indexes = indexOf(data);
 		synchronized (values) {
+			// FIXME: This is wrong
 			for (Integer index : indexes) {
 				values.remove(index);
 			}
